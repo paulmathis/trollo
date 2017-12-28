@@ -4,9 +4,6 @@ import { Provider } from 'react-redux';
 import App from './App';
 
 class Root extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <Provider store={this.props.store}>
