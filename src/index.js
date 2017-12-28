@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 store.dispatch(createBoard('Test Board'));
 store.dispatch(createBoard('Test Board 2'));
-store.dispatch(deleteBoard('board1'));
+store.dispatch(deleteBoard('0'));
 
 console.log(store.getState());
 
