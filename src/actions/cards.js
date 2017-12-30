@@ -1,10 +1,20 @@
 export const ADD_CARD = 'ADD_CARD';
+export const DELETE_CARD = 'DELETE_CARD';
 
-export const addCard = (name, board, list) => {
+let id = 0;
+export const addCard = (name, list) => {
   return {
     type: ADD_CARD,
     name,
-    board,
-    list
+    list,
+    id: `card${id++}`
+  };
+};
+
+export const deleteCard = (id, list) => {
+  return {
+    type: DELETE_CARD,
+    list,
+    id
   };
 };

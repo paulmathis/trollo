@@ -7,7 +7,7 @@ export const createBoard = title => {
   return {
     type: CREATE_BOARD,
     title,
-    id: id++
+    id: `board${id++}`
   };
 };
 

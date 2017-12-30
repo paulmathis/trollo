@@ -1,4 +1,5 @@
-import { CREATE_BOARD, DELETE_BOARD, ADD_LIST } from '../actions';
+import { CREATE_BOARD, DELETE_BOARD, ADD_LIST, DELETE_LIST } from '../actions';
+import { deleteItem } from './sharedReducers';
 
 function createBoard(state, action) {
   return {
@@ -15,19 +16,7 @@ function createBoard(state, action) {
   };
 }
 
-function deleteBoard(state, action) {
-  const { byId: { [action.id]: deleted, ...byId } } = state;
-  const ids = state.ids.filter(id => action.id !== id);
-  return {
-    byId,
-    ids
-  };
-}
-
 function addList(state, action) {
-  // If board does not exist return state unchanged
-  if (!(action.board in state.byId)) return state;
-
   const previousBoardState = { ...state.byId[action.board] };
   return {
     ...state,
@@ -40,14 +29,34 @@ function addList(state, action) {
   };
 }
 
+function deleteList(state, action) {
+  const filtered = state.byId[action.board].lists.filter(list => {
+    return list !== action.id;
+  });
+  return {
+    ...state,
+    byId: {
+      ...state.byId,
+      [action.board]: {
+        ...state.byId[action.board],
+        lists: filtered
+      }
+    }
+  };
+}
+
 const boards = (state = { byId: {}, ids: [] }, action) => {
   switch (action.type) {
     case CREATE_BOARD:
       return createBoard(state, action);
     case DELETE_BOARD:
-      return deleteBoard(state, action);
+      return deleteItem(state, action);
     case ADD_LIST:
+      // If board does not exist return state unchanged
+      if (!(action.board in state.byId)) return state;
       return addList(state, action);
+    case DELETE_LIST:
+      return deleteList(state, action);
     default:
       return state;
   }
