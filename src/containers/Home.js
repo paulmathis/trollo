@@ -11,8 +11,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispacthToProps = (dispatch, ownProps) => {
   return {
-    onClick: () => {
-      dispatch(createBoard('test'));
+    createBoard: title => {
+      dispatch(createBoard(title));
     }
   };
 };

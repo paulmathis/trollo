@@ -10,16 +10,14 @@ const GridContainer = styled.div`
   grid-gap: 10px;
 `;
 
-const Boards = ({ boards, onClick }) => {
+const Boards = ({ boards, createBoard }) => {
   const Boards = boards.ids.map(board => {
     return <Board key={board} title={boards.byId[board].title} />;
   });
   return (
     <GridContainer>
       {Boards}
-      <Board title="test" />
-      <Board title="test" />
-      <CreateBoard />
+      <CreateBoard onSubmit={createBoard} />
     </GridContainer>
   );
 };
