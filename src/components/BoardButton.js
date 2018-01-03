@@ -1,11 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Button } from 'reactstrap';
 
-const BoardButton = ({ title }) => {
-  return <Button>{title}</Button>;
-};
-
-BoardButton.propTypes = {};
+const BoardButton = styled(Button)`
+  width: 100%;
+  height: 100px;
+`;
 
 export default BoardButton;
