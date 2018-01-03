@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Button, Input, Label, Form, FormGroup } from 'reactstrap';
 import BoardButton from './BoardButton';
 
+// Wrapper to setup button for popover
 const Wrapper = styled.div`
   position: relative;
   button:focus {
@@ -92,6 +93,7 @@ class CreateBoard extends Component {
                 placeholder="&quot;Like New Hire Onboarding&quot; for example..."
                 onChange={this.handleChange}
                 innerRef={input => (this.titleInput = input)}
+                value={this.state.title}
               />
             </FormGroup>
             <Button color="success">Create</Button>
