@@ -104,6 +104,8 @@ class CreateBoard extends Component {
   }
 }
 
-CreateBoard.propTypes = {};
+CreateBoard.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};
 
 export default CreateBoard;

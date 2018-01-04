@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Boards from '../components/Boards';
+import { Container } from 'reactstrap';
+import BoardsList from '../components/BoardsList';
 import { createBoard } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -17,16 +18,16 @@ const mapDispacthToProps = (dispatch, ownProps) => {
   };
 };
 
-const CurrentBoards = connect(mapStateToProps, mapDispacthToProps)(Boards);
+const CurrentBoards = connect(mapStateToProps, mapDispacthToProps)(BoardsList);
 
-const Home = props => {
+const Home = () => {
   return (
     <div>
-      <CurrentBoards />
+      <Container>
+        <CurrentBoards />
+      </Container>
     </div>
   );
 };
-
-Home.propTypes = {};
 
 export default Home;

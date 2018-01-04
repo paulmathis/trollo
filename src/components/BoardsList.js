@@ -10,9 +10,9 @@ const GridContainer = styled.div`
   grid-gap: 10px;
 `;
 
-const Boards = ({ boards, createBoard }) => {
+const BoardsList = ({ boards, createBoard }) => {
   const Boards = boards.ids.map(board => {
-    return <Board key={board} title={boards.byId[board].title} />;
+    return <Board key={board} title={boards.byId[board].title} id={board} />;
   });
   return (
     <GridContainer>
@@ -22,6 +22,12 @@ const Boards = ({ boards, createBoard }) => {
   );
 };
 
-Boards.propTypes = {};
+BoardsList.propTypes = {
+  boards: PropTypes.shape({
+    byId: PropTypes.object.isRequired,
+    ids: PropTypes.array.isRequired
+  }).isRequired,
+  createBoard: PropTypes.func.isRequired
+};
 
-export default Boards;
+export default BoardsList;

@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { Container } from 'reactstrap';
 import Home from './Home';
+import BoardHome from './BoardHome';
 
 class Root extends Component {
   render() {
     return (
       <Provider store={this.props.store}>
-        <Container>
-          <Router>
-            <Route path="/" component={Home} />
-          </Router>
-        </Container>
+        <Router>
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route path="/:board" component={BoardHome} />
+          </div>
+        </Router>
       </Provider>
     );
   }

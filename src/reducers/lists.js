@@ -18,13 +18,14 @@ function addList(state, action) {
 }
 
 function addCard(state, action) {
-  const previousBoardState = { ...state.byId[action.list] };
+  const previousListState = { ...state.byId[action.list] };
   return {
     ...state,
     byId: {
+      ...state.byId,
       [action.list]: {
-        ...previousBoardState,
-        cards: [...previousBoardState.cards, action.id]
+        ...previousListState,
+        cards: [...previousListState.cards, action.id]
       }
     }
   };

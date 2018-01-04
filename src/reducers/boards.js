@@ -24,7 +24,8 @@ function addList(state, action) {
       [action.board]: {
         ...previousBoardState,
         lists: [...previousBoardState.lists, action.id]
-      }
+      },
+      ...state.byId
     }
   };
 }
