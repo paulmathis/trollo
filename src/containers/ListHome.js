@@ -16,6 +16,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => {};
+
 const CurrentCards = connect(mapStateToProps)(List);
 
 const ListHome = props => {
