@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Card from './Card';
 import AddCard from './AddCard';
@@ -16,7 +17,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const List = props => {
+type Props = {
+  cards: Array<{
+    id: string,
+    name: string
+  }>,
+  id: string,
+  name: string
+};
+
+const List = (props: Props) => {
+  console.log(props);
   const Cards = props.cards.map(card => {
     return <Card key={card.id}>{card.name}</Card>;
   });
@@ -30,7 +41,5 @@ const List = props => {
     </Wrapper>
   );
 };
-
-List.propTypes = {};
 
 export default List;

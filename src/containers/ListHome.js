@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import List from '../components/List.js';
 
@@ -16,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {};
+// const mapDispatchToProps = (dispatch, ownProps) => {};
 
 const CurrentCards = connect(mapStateToProps)(List);
 

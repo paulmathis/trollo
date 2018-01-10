@@ -1,5 +1,6 @@
+// @flow
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button, Input, Label, Form, FormGroup } from 'reactstrap';
 import BoardButton from './BoardButton';
@@ -35,22 +36,25 @@ const Popover = styled.div`
   }
 `;
 
-class CreateBoard extends Component {
-  constructor(props) {
-    super(props);
+type Props = {
+  onSubmit: func
+};
 
-    this.state = {
-      showPopover: false,
-      title: ''
-    };
+type State = {
+  showPopover: boolean,
+  title: string
+};
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+class CreateBoard extends Component<Props, State> {
+  titleInput: HTMLInputElement;
+
+  state = {
+    showPopover: false,
+    title: ''
+  };
 
   // On button click, show the popover form and focus the input
-  handleClick() {
+  handleClick = () => {
     this.setState(
       {
         showPopover: !this.state.showPopover
@@ -59,24 +63,24 @@ class CreateBoard extends Component {
         this.titleInput.focus();
       }
     );
-  }
+  };
 
   // Update title state on input change
-  handleChange(e) {
+  handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
     this.setState({
       title: e.target.value
     });
-  }
+  };
 
   // On submit Dispatch createBoard and reset internal state to defaults
-  handleSubmit(e) {
+  handleSubmit = (e: SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault();
     this.props.onSubmit(this.state.title);
     this.setState({
       showPopover: false,
       title: ''
     });
-  }
+  };
   render() {
     return (
       <Wrapper>
@@ -86,15 +90,7 @@ class CreateBoard extends Component {
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label>Title</Label>
-              <Input
-                type="text"
-                name="title"
-                id="titleInput"
-                placeholder="&quot;Like New Hire Onboarding&quot; for example..."
-                onChange={this.handleChange}
-                innerRef={input => (this.titleInput = input)}
-                value={this.state.title}
-              />
+              <Input type="text" name="title" id="titleInput" placeholder="&quot;Like New Hire Onboarding&quot; for example..." onChange={this.handleChange} innerRef={input => (this.titleInput = input)} value={this.state.title} />
             </FormGroup>
             <Button color="success">Create</Button>
           </Form>
@@ -103,9 +99,5 @@ class CreateBoard extends Component {
     );
   }
 }
-
-CreateBoard.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-};
 
 export default CreateBoard;
