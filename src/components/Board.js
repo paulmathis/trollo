@@ -1,9 +1,15 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BoardButton from './BoardButton';
 
-const Board = ({ title, id }) => {
+type Props = {
+  title: string,
+  id: string
+};
+
+const Board = ({ title, id }: Props) => {
   return (
     <div>
       <Link to={id}>
@@ -13,11 +19,6 @@ const Board = ({ title, id }) => {
       </Link>
     </div>
   );
-};
-
-Board.propTypes = {
-  title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired
 };
 
 export default Board;

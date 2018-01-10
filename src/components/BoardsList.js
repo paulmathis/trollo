@@ -1,5 +1,6 @@
+// @flow
+
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Board from './Board';
 import CreateBoard from './CreateBoard';
@@ -10,7 +11,19 @@ const GridContainer = styled.div`
   grid-gap: 10px;
 `;
 
-const BoardsList = ({ boards, createBoard }) => {
+type Props = {
+  boards: {
+    byId: {
+      [key: string]: {
+        title: string
+      }
+    },
+    ids: Array<string>
+  },
+  createBoard: (title: string) => void
+};
+
+const BoardsList = ({ boards, createBoard }: Props) => {
   const Boards = boards.ids.map(board => {
     return <Board key={board} title={boards.byId[board].title} id={board} />;
   });
@@ -20,14 +33,6 @@ const BoardsList = ({ boards, createBoard }) => {
       <CreateBoard onSubmit={createBoard} />
     </GridContainer>
   );
-};
-
-BoardsList.propTypes = {
-  boards: PropTypes.shape({
-    byId: PropTypes.object.isRequired,
-    ids: PropTypes.array.isRequired
-  }).isRequired,
-  createBoard: PropTypes.func.isRequired
 };
 
 export default BoardsList;

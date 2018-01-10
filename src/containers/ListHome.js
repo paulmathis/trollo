@@ -1,6 +1,9 @@
+// @flow
+
 import React from 'react';
 import { connect } from 'react-redux';
-import List from '../components/List.js';
+import List from '../components/List';
+import type Props from '../components/List';
 
 const mapStateToProps = (state, ownProps) => {
   const filteredCards = state.cards.ids.filter(card => {
@@ -19,7 +22,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const CurrentCards = connect(mapStateToProps)(List);
 
-const ListHome = props => {
+const ListHome = (props: Props) => {
   return <CurrentCards {...props} />;
 };
 

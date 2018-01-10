@@ -37,7 +37,7 @@ const Popover = styled.div`
 `;
 
 type Props = {
-  onSubmit: func
+  onSubmit: (title: string) => void
 };
 
 type State = {
@@ -66,7 +66,7 @@ class CreateBoard extends Component<Props, State> {
   };
 
   // Update title state on input change
-  handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+  handleChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({
       title: e.target.value
     });
@@ -90,7 +90,15 @@ class CreateBoard extends Component<Props, State> {
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label>Title</Label>
-              <Input type="text" name="title" id="titleInput" placeholder="&quot;Like New Hire Onboarding&quot; for example..." onChange={this.handleChange} innerRef={input => (this.titleInput = input)} value={this.state.title} />
+              <Input
+                type="text"
+                name="title"
+                id="titleInput"
+                placeholder="&quot;Like New Hire Onboarding&quot; for example..."
+                onChange={this.handleChange}
+                innerRef={input => (this.titleInput = input)}
+                value={this.state.title}
+              />
             </FormGroup>
             <Button color="success">Create</Button>
           </Form>

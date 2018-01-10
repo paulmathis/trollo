@@ -1,10 +1,16 @@
+// @flow
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Home from './Home';
 import BoardHome from './BoardHome';
 
-class Root extends Component {
+type Props = {
+  store: any
+};
+
+class Root extends Component<Props> {
   render() {
     return (
       <Provider store={this.props.store}>

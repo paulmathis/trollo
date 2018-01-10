@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import styled from 'styled-components';
 
@@ -10,7 +12,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const AddCard = props => {
+const AddCard = () => {
   return <Wrapper>Add a card...</Wrapper>;
 };
 

@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -15,5 +17,10 @@ store.dispatch(addCard('Test Card', 'list0'));
 store.dispatch(addCard('Test Card 3', 'list0'));
 store.dispatch(addCard('Test Card 2', 'list2'));
 
-ReactDOM.render(<Root store={store} />, document.getElementById('root'));
+var rootId = document.getElementById('root');
+if (rootId == null) {
+  throw new Error('no root id element');
+}
+
+ReactDOM.render(<Root store={store} />, rootId);
 registerServiceWorker();

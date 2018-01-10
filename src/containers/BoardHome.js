@@ -1,8 +1,11 @@
+// @flow
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import ListsList from '../components/ListsList';
+import type { Match } from 'react-router-dom';
 
 const BoardContainer = styled(Container)`
   background-color: #0079bf;
@@ -28,7 +31,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const CurrentLists = connect(mapStateToProps)(ListsList);
 
-const BoardHome = ({ match }) => {
+type Props = {
+  match: Match
+};
+
+const BoardHome = ({ match }: Props) => {
   return (
     <BoardContainer fluid>
       <CurrentLists board={match.params.board} />

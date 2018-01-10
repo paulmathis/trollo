@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 `;
 
-type Props = {
+export type Props = {
   cards: Array<{
     id: string,
     name: string
@@ -27,7 +27,6 @@ type Props = {
 };
 
 const List = (props: Props) => {
-  console.log(props);
   const Cards = props.cards.map(card => {
     return <Card key={card.id}>{card.name}</Card>;
   });

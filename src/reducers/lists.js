@@ -1,5 +1,20 @@
+// @flow
+
 import { ADD_LIST, DELETE_LIST, ADD_CARD, DELETE_CARD } from '../actions';
 import { deleteItem } from './sharedReducers';
+import type { Action } from '../actions';
+
+type State = {
+  byId: {
+    [key: string]: {
+      id: string,
+      name: string,
+      board: string,
+      cards: Array<string>
+    }
+  },
+  ids: Array<string>
+};
 
 function addList(state, action) {
   return {
@@ -47,7 +62,7 @@ function deleteCard(state, action) {
   };
 }
 
-const lists = (state = { byId: {}, ids: [] }, action) => {
+const lists = (state: State = { byId: {}, ids: [] }, action: Action) => {
   switch (action.type) {
     case ADD_LIST:
       return addList(state, action);
