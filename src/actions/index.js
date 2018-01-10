@@ -1,12 +1,11 @@
 // @flow
 
-import type { CreateBoardAction, CloseBoardAction, DeleteBoardAction } from './boards';
+import type { CreateBoardAction, DeleteBoardAction } from './boards';
 import type { AddListAction, DeleteListAction } from './lists';
 import type { AddCardAction, DeleteCardAction } from './cards';
 
 export type Action =
   | CreateBoardAction
-  | CloseBoardAction
   | DeleteBoardAction
   | AddListAction
   | DeleteListAction

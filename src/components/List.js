@@ -23,7 +23,8 @@ export type Props = {
     name: string
   }>,
   id: string,
-  name: string
+  name: string,
+  addCard: (name: string, list: string) => void
 };
 
 const List = (props: Props) => {
@@ -36,7 +37,7 @@ const List = (props: Props) => {
         <strong>{props.name}</strong>
       </div>
       {Cards}
-      <AddCard />
+      <AddCard addCard={props.addCard} list={props.id} />
     </Wrapper>
   );
 };

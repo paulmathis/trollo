@@ -3,6 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import List from '../components/List';
+import { addCard } from '../actions';
 import type Props from '../components/List';
 
 const mapStateToProps = (state, ownProps) => {
@@ -14,13 +15,20 @@ const mapStateToProps = (state, ownProps) => {
     return state.cards.byId[card];
   });
   return {
-    cards
+    cards,
+    list: ownProps.id
   };
 };
 
-// const mapDispatchToProps = (dispatch, ownProps) => {};
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    addCard: (name, list) => {
+      dispatch(addCard(name, list));
+    }
+  };
+};
 
-const CurrentCards = connect(mapStateToProps)(List);
+const CurrentCards = connect(mapStateToProps, mapDispatchToProps)(List);
 
 const ListHome = (props: Props) => {
   return <CurrentCards {...props} />;

@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import ListsList from '../components/ListsList';
+import { addList } from '../actions';
 import type { Match } from 'react-router-dom';
 
 const BoardContainer = styled(Container)`
   background-color: #0079bf;
   min-height: 100vh;
+  padding-top: 30px;
 `;
 
 const mapStateToProps = (state, ownProps) => {
@@ -29,7 +31,15 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const CurrentLists = connect(mapStateToProps)(ListsList);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    addList: (name, board) => {
+      dispatch(addList(name, board));
+    }
+  };
+};
+
+const CurrentLists = connect(mapStateToProps, mapDispatchToProps)(ListsList);
 
 type Props = {
   match: Match

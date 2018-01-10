@@ -8,8 +8,15 @@ import BoardButton from './BoardButton';
 // Wrapper to setup button for popover
 const Wrapper = styled.div`
   position: relative;
-  button:focus {
-    outline: none;
+
+  button {
+    background-color: #e2e4e6;
+    color: #838c91;
+    border: none;
+
+    :focus {
+      outline: none;
+    }
   }
 `;
 
@@ -37,7 +44,7 @@ const Popover = styled.div`
 `;
 
 type Props = {
-  onSubmit: (title: string) => void
+  createBoard: (title: string) => void
 };
 
 type State = {
@@ -57,7 +64,7 @@ class CreateBoard extends Component<Props, State> {
   handleClick = () => {
     this.setState(
       {
-        showPopover: !this.state.showPopover
+        showPopover: true
       },
       () => {
         this.titleInput.focus();
@@ -75,7 +82,7 @@ class CreateBoard extends Component<Props, State> {
   // On submit Dispatch createBoard and reset internal state to defaults
   handleSubmit = (e: SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    this.props.onSubmit(this.state.title);
+    this.props.createBoard(this.state.title);
     this.setState({
       showPopover: false,
       title: ''

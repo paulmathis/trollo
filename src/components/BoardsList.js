@@ -30,7 +30,7 @@ const BoardsList = ({ boards, createBoard }: Props) => {
   return (
     <GridContainer>
       {Boards}
-      <CreateBoard onSubmit={createBoard} />
+      <CreateBoard createBoard={createBoard} />
     </GridContainer>
   );
 };

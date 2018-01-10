@@ -3,6 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
+import styled from 'styled-components';
 import BoardsList from '../components/BoardsList';
 import { createBoard } from '../actions';
 
@@ -22,12 +23,16 @@ const mapDispacthToProps = (dispatch, ownProps) => {
 
 const CurrentBoards = connect(mapStateToProps, mapDispacthToProps)(BoardsList);
 
+const HomeContainer = styled(Container)`
+  padding-top: 30px;
+`;
+
 const Home = () => {
   return (
     <div>
-      <Container>
+      <HomeContainer>
         <CurrentBoards />
-      </Container>
+      </HomeContainer>
     </div>
   );
 };

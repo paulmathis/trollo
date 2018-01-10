@@ -5,21 +5,21 @@ import styled from 'styled-components';
 import { Button, Input, Label, Form, FormGroup } from 'reactstrap';
 
 const Wrapper = styled.div`
-  /* background-color: rgba(0, 0, 0, 0.12); */
   height: 100%;
   width: 270px;
-  /* color: hsla(0, 0%, 100%, 0.7); */
+  color: hsla(0, 0%, 100%, 0.7);
   border-radius: 3px;
   padding: 9px;
   cursor: pointer;
 
-  :hover {
-    background-color: ${props => (!props.showForm ? 'rgba(0, 0, 0, 0.2)' : 'inherit')};
-  }
-
   /* Toggle the form on and off */
+  background-color: ${props => (props.showForm ? '#e2e4e6' : 'rgba(0, 0, 0, 0.12)')};
+
+  :hover {
+    background-color: ${props => (props.showForm ? '#e2e4e6' : 'rgba(0, 0, 0, 0.4)')};
+  }
   span {
-    display: ${props => (!props.showForm ? 'block' : 'none')};
+    display: ${props => (props.showForm ? 'none' : 'block')};
   }
   form {
     display: ${props => (props.showForm ? 'block' : 'none')};
@@ -27,8 +27,8 @@ const Wrapper = styled.div`
 `;
 
 type Props = {
-  list: string,
-  addCard: (name: string, board: string) => void
+  board: string,
+  addList: (name: string, board: string) => void
 };
 
 type State = {
@@ -36,8 +36,8 @@ type State = {
   name: string
 };
 
-class AddCard extends Component<Props, State> {
-  cardNameInput: HTMLInputElement;
+class AddList extends Component<Props, State> {
+  listNameInput: HTMLInputElement;
 
   state = {
     showForm: false,
@@ -51,7 +51,7 @@ class AddCard extends Component<Props, State> {
         showForm: true
       },
       () => {
-        this.cardNameInput.focus();
+        this.listNameInput.focus();
       }
     );
   };
@@ -63,10 +63,10 @@ class AddCard extends Component<Props, State> {
     });
   };
 
-  // On submit Dispatch Card and reset internal state to defaults
+  // On submit Dispatch addList and reset internal state to defaults
   handleSubmit = (e: SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    this.props.addCard(this.state.name, this.props.list);
+    this.props.addList(this.state.name, this.props.board);
     this.setState({
       showForm: false,
       name: ''
@@ -82,19 +82,18 @@ class AddCard extends Component<Props, State> {
             <Input
               type="text"
               name="name"
-              id="cardNameInput"
+              id="listNameInput"
               placeholder="Add a list..."
               onChange={this.handleChange}
-              innerRef={input => (this.cardNameInput = input)}
+              innerRef={input => (this.listNameInput = input)}
               value={this.state.name}
             />
           </FormGroup>
           <Button color="success">Save</Button>
-          x
         </Form>
       </Wrapper>
     );
   }
 }
 
-export default AddCard;
+export default AddList;
