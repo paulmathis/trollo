@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Button, Input, Label, Form, FormGroup } from 'reactstrap';
+import { Button, Input, Form, FormGroup } from 'reactstrap';
 
 const Wrapper = styled.div`
   /* background-color: rgba(0, 0, 0, 0.12); */

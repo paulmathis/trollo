@@ -14,6 +14,17 @@ const Wrapper = styled.div`
   .list-top {
     margin-bottom: 5px;
     padding: 6px 6px 0 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+    svg {
+      color: #999;
+      font-size: 1.5em;
+      :hover {
+        color: #333;
+      }
+    }
   }
 `;
 
@@ -29,12 +40,13 @@ export type Props = {
 
 const List = (props: Props) => {
   const Cards = props.cards.map(card => {
-    return <Card key={card.id}>{card.name}</Card>;
+    return <Card key={card.id} name={card.name} />;
   });
   return (
     <Wrapper>
       <div className="list-top">
         <strong>{props.name}</strong>
+        <i class="far fa-window-close" />
       </div>
       {Cards}
       <AddCard addCard={props.addCard} list={props.id} />
