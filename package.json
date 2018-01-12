@@ -17,6 +17,7 @@
     "redux": "^3.7.2",
     "styled-components": "^2.4.0"
   },
+  "homepage": "https://paulmathis.github.io/trollo",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

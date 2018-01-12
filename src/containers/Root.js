@@ -15,7 +15,7 @@ class Root extends Component<Props> {
   render() {
     return (
       <Provider store={this.props.store}>
-        <Router>
+        <Router basename="/trollo">
           <div>
             <Route path="/" component={Nav} />
             <Route exact path="/" component={Home} />
