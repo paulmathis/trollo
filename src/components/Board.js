@@ -14,6 +14,7 @@ type Props = {
 
 const Board = ({ title, id, deleteBoard }: Props) => {
   function handleClick(e) {
+    //Prevent default of opening the board from click of the button
     e.preventDefault();
     deleteBoard(id);
   }
@@ -31,6 +32,7 @@ const Board = ({ title, id, deleteBoard }: Props) => {
   );
 };
 
+// Map in delete board dispatch to be used in component
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     deleteBoard: board => {
@@ -39,6 +41,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-const BoardExport = connect(null, mapDispatchToProps)(Board);
-
-export default BoardExport;
+export default connect(null, mapDispatchToProps)(Board);

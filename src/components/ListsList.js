@@ -17,12 +17,13 @@ type Props = {
     name: string
   }>,
   board: string,
-  addList: (name: string, board: string) => void
+  addList: (name: string, board: string) => void,
+  deleteList: (id: string, board: string) => void
 };
 
-const ListsList = ({ lists, board, addList }: Props) => {
+const ListsList = ({ lists, board, addList, deleteList }: Props) => {
   const Lists = lists.map(list => {
-    return <ListHome key={list.id} name={list.name} id={list.id} cards={list.cards} />;
+    return <ListHome key={list.id} name={list.name} id={list.id} cards={list.cards} board={board} deleteList={deleteList} />;
   });
   return (
     <ListContainer>

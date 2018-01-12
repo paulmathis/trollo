@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
 import styled from 'styled-components';
 import ListsList from '../components/ListsList';
-import { addList } from '../actions';
+import { addList, deleteList } from '../actions';
 import type { Match } from 'react-router-dom';
 
 const BoardContainer = styled(Container)`
@@ -35,6 +35,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     addList: (name, board) => {
       dispatch(addList(name, board));
+    },
+    deleteList: (id, board) => {
+      dispatch(deleteList(id, board));
     }
   };
 };

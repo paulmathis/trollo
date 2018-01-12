@@ -35,18 +35,25 @@ export type Props = {
   }>,
   id: string,
   name: string,
-  addCard: (name: string, list: string) => void
+  board: string,
+  addCard: (name: string, list: string) => void,
+  deleteList: (id: string, board: string) => void
 };
 
 const List = (props: Props) => {
+  const handleClick = () => {
+    props.deleteList(props.id, props.board);
+  };
   const Cards = props.cards.map(card => {
-    return <Card key={card.id} name={card.name} />;
+    return <Card key={card.id} name={card.name} list={props.id} id={card.id} />;
   });
   return (
     <Wrapper>
       <div className="list-top">
         <strong>{props.name}</strong>
-        <i class="far fa-window-close" />
+        <div onClick={handleClick}>
+          <i className="far fa-window-close" />
+        </div>
       </div>
       {Cards}
       <AddCard addCard={props.addCard} list={props.id} />

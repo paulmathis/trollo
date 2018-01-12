@@ -6,9 +6,9 @@ import List from '../components/List';
 import { addCard } from '../actions';
 import type Props from '../components/List';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, { id, board, deleteList }) => {
   const filteredCards = state.cards.ids.filter(card => {
-    return state.cards.byId[card].list === ownProps.id;
+    return state.cards.byId[card].list === id;
   });
 
   const cards = filteredCards.map(card => {
@@ -16,7 +16,8 @@ const mapStateToProps = (state, ownProps) => {
   });
   return {
     cards,
-    list: ownProps.id
+    list: id,
+    deleteList
   };
 };
 

@@ -1,6 +1,9 @@
 // @flow
+
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { deleteCard } from '../actions';
 
 const CardStyle = styled.div`
   background-color: white;
@@ -19,12 +22,34 @@ const CardStyle = styled.div`
   }
 `;
 
-const Card = props => {
+type Props = {
+  id: string,
+  list: string,
+  name: string,
+  deleteCard: (id: string, list: string) => void
+};
+
+const Card = (props: Props) => {
+  const handleClick = () => {
+    props.deleteCard(props.id, props.list);
+  };
   return (
     <CardStyle>
-      {props.name} <i className="fas fa-times" />
+      {props.name}
+      <div onClick={handleClick}>
+        <i className="fas fa-times" />
+      </div>
     </CardStyle>
   );
 };
 
-export default Card;
+// Map in delete card dispatch to be used in component
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    deleteCard: (id, list) => {
+      dispatch(deleteCard(id, list));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Card);
